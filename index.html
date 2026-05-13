@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>法庭语音转写系统</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>法庭语音转写系统</h1>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-dot"></span>
+                <span id="statusText">未连接</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="speaker-select">
+                    <h3>发言人角色</h3>
+                    <div class="speaker-buttons">
+                        <button class="speaker-btn active" data-role="judge">
+                            <span class="role-icon">⚖️</span>
+                            法官
+                        </button>
+                        <button class="speaker-btn" data-role="plaintiff">
+                            <span class="role-icon">📄</span>
+                            原告
+                        </button>
+                        <button class="speaker-btn" data-role="defendant">
+                            <span class="role-icon">📋</span>
+                            被告
+                        </button>
+                        <button class="speaker-btn" data-role="clerk">
+                            <span class="role-icon">✍️</span>
+                            书记员
+                        </button>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <button id="recordBtn" class="control-btn record-btn">
+                        <span class="btn-icon">🎤</span>
+                        开始录音
+                    </button>
+                    <button id="stopBtn" class="control-btn stop-btn" disabled>
+                        <span class="btn-icon">⏹️</span>
+                        停止录音
+                    </button>
+                </div>
+
+                <div class="quick-input">
+                    <h3>快捷输入</h3>
+                    <div class="template-buttons">
+                        <button class="template-btn" data-text="现在开庭">现在开庭</button>
+                        <button class="template-btn" data-text="请原告陈述诉讼请求">请原告陈述</button>
+                        <button class="template-btn" data-text="请被告进行答辩">请被告答辩</button>
+                        <button class="template-btn" data-text="请出示证据">请出示证据</button>
+                        <button class="template-btn" data-text="现在进行法庭调查">法庭调查</button>
+                        <button class="template-btn" data-text="现在进行法庭辩论">法庭辩论</button>
+                        <button class="template-btn" data-text="现在休庭">现在休庭</button>
+                        <button class="template-btn" data-text="同意">同意</button>
+                        <button class="template-btn" data-text="不同意">不同意</button>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="clearBtn" class="action-btn">清空记录</button>
+                    <button id="summaryBtn" class="action-btn primary">生成总结</button>
+                    <button id="exportBtn" class="action-btn">导出文档</button>
+                </div>
+            </aside>
+
+            <main class="content-area">
+                <div class="config-panel">
+                    <div class="config-item">
+                        <label for="wsUrl">ASR 服务器地址:</label>
+                        <input type="text" id="wsUrl" value="ws://localhost:3000" placeholder="ws://localhost:3000">
+                        <button id="connectBtn" class="small-btn">连接</button>
+                    </div>
+                    <div class="engine-info">
+                        <span>当前引擎:</span>
+                        <strong id="engineType">模拟模式</strong>
+                    </div>
+                </div>
+
+                <div class="transcript-panel">
+                    <h2>庭审记录</h2>
+                    <div id="transcriptContainer" class="transcript-container">
+                        <div class="empty-state">
+                            <p>点击"开始录音"开始语音转写</p>
+                            <p>或使用快捷输入添加内容</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-panel" id="summaryPanel" style="display: none;">
+                    <h2>庭审总结</h2>
+                    <div id="summaryContent" class="summary-content"></div>
+                </div>
+
+                <div class="debug-panel">
+                    <h3>调试信息</h3>
+                    <div id="debugLog" class="debug-log"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "courtroom-transcription-system",
+  "version": "1.0.0",
+  "description": "法庭语音转写系统 - 集成 Fun-ASR",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["speech", "recognition", "courtroom", "asr"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0",
+    "cors": "^2.8.5"
+  }
+}
